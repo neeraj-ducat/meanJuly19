@@ -1,0 +1,14 @@
+"use strict";
+exports.__esModule = true;
+var rect_1 = require("./rect");
+var cuboid_1 = require("./cuboid");
+console.log('Creating a rectangle object...');
+var r = new rect_1.Rectangle(5, 6);
+console.log('Object created, its dimensons are:');
+r.display();
+console.log('Its area is: ' + r.area());
+console.log('Creating a Cuboid object...');
+var c = new cuboid_1.Cuboid(10, 20, 30);
+console.log('Object created, its dimensons are:');
+c.display();
+console.log('Its volume is: ' + c.volume());
