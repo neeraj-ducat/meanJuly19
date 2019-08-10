@@ -1,0 +1,14 @@
+<div class="row">
+  <table class="table table-bordered table-striped table-hover">
+    <tr>
+      <td>Name</td><td>Job</td><td>Salary</td><td>Action</td>
+    </tr>
+    <tr *ngFor="let e of empService.empArray">
+        <td>{{e.name}}</td><td>{{e.job}}</td>
+        <td>{{e.salary}}</td><td>
+          <button type="button" class="btn btn-link">edit</button> &nbsp;
+          <button type="button" class="btn btn-link" (click)="remove(e)">delete</button>
+        </td>
+    </tr>
+  </table>
+</div>
