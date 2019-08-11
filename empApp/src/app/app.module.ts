@@ -4,7 +4,6 @@ import {FormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 // Import BrowserAnimationsModule
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
- 
 // Import your library
 import { AlertModule } from 'ngx-alerts';
 import { AppComponent } from './app.component';
@@ -22,7 +21,8 @@ import { ViewempComponent } from './viewemp/viewemp.component';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'})
+    AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'}),
+   
 
   ],
   providers: [],

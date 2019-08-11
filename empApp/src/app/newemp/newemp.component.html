@@ -17,8 +17,12 @@
     </div>
     <div class="form-group">
      <button type="button" class="btn btn-primary"
-     (click)="saveEmp()">
+     (click)="saveEmp()" *ngIf="empService.editIndex == -1">
        Add Emp
+     </button>
+     <button type="button" class="btn btn-primary"
+     (click)="updateEmp()" *ngIf="empService.editIndex >= 0">
+       Update Emp
      </button>
     </div>
   </form>
