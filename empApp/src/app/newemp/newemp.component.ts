@@ -3,6 +3,7 @@ import { Emp } from '../emp.entity';
 import { EmpService } from '../emp.service';
 import { AlertService } from 'ngx-alerts';
 import { Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-newemp',
@@ -21,7 +22,14 @@ export class NewempComponent implements OnInit, OnDestroy {
    }
 
    // method to save the emp to the service array
-  saveEmp() {
+  saveEmp(form: FormGroup) {
+
+    if(form.invalid) {
+      // Mark the input fields of the form as dirty
+      for(let i in form.controls)
+          form.controls[i].markAsTouched();
+    }
+    else {
     // copy of the emp object is created
     let newEmp = Object.assign({},this.emp);
     // copied object is added to the service so
@@ -31,10 +39,14 @@ export class NewempComponent implements OnInit, OnDestroy {
     
     // alert message is displayed
     this.alertService.success('successfully added.');
-    // Input form is emptied
-    this.emp.name="";
-    this.emp.job="";
-    this.emp.salary=0;
+    this.clearForm();
+    }
+  }
+  clearForm() {
+     // Input form is emptied
+     this.emp.name="";
+     this.emp.job="";
+     this.emp.salary=0;
   }
   ngOnInit() {
     // If editIndex is valid in empService, assign the indexed object
