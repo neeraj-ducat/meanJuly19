@@ -3,7 +3,7 @@ import { Emp } from '../emp.entity';
 import { EmpService } from '../emp.service';
 import { AlertService } from 'ngx-alerts';
 import { Router } from '@angular/router';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-newemp',
@@ -32,14 +32,16 @@ export class NewempComponent implements OnInit, OnDestroy {
     else {
     // copy of the emp object is created
     let newEmp = Object.assign({},this.emp);
-    // copied object is added to the service so
-    // that it remain detached from the form.
-    this.empService.empArray.push(newEmp);
-    // save the array to the storage
-    
-    // alert message is displayed
-    this.alertService.success('successfully added.');
-    this.clearForm();
+    // get the Emp saved on the server
+    this.empService.saveEmployee(newEmp)
+      .subscribe(data => {
+        this.empService.empArray.push(newEmp);
+      // alert message is displayed
+        this.alertService.success('successfully added.');
+        this.clearForm();
+        for(let i in form.controls)
+          form.controls[i].markAsUntouched();
+      });
     }
   }
   clearForm() {
@@ -47,6 +49,7 @@ export class NewempComponent implements OnInit, OnDestroy {
      this.emp.name="";
      this.emp.job="";
      this.emp.salary=0;
+     
   }
   ngOnInit() {
     // If editIndex is valid in empService, assign the indexed object
@@ -58,11 +61,11 @@ export class NewempComponent implements OnInit, OnDestroy {
   }
   updateEmp() {
     // object to be updated is given to the service
-    this.empService.update(this.emp);
-    // save the array to the storage
-    
-    // route is changed to view
-    this.router.navigate(['view']);
+
+    this.empService.updateEmployee(this.emp)
+    .subscribe(data => {
+      this.router.navigate(['view']);
+    });
   }
   ngOnDestroy() {
     console.log("New component is destroyed.");

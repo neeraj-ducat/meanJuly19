@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Emp } from './emp.entity';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
+const api_url ='http://localhost:3000/employees';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +15,7 @@ export class EmpService {
 
   // Array of emp objects
   empArray : Emp[];
-  constructor() {
+  constructor(private httpClient: HttpClient) {
     // load employees from the localstorage into the array
   
     // If no data is loaded, create an empty array
@@ -20,18 +23,28 @@ export class EmpService {
     this.empArray = Array();
    }
 
-   saveArrayToStorage() {
-    
-   } 
+   
   setIndex(index: number) {
     this.editIndex = index;
   } 
 
-  // method to update an emp
-  update(e: Emp) {
-    // Remove the old object from the index and insert the new
-    this.empArray.splice(this.editIndex, 1, e);
-    // set the editIndex back to -1
-    this.editIndex = -1;
+  // Method to load data from the API
+  loadEmployees() :Observable<Emp[]> {
+      return this.httpClient.get<Emp[]>(api_url);
+  }
+  // Method to save emp to the API
+  saveEmployee(emp : Emp) :Observable<Emp> {
+    return this.httpClient.post<Emp>(api_url,emp);
+  }
+  // Method to update emp to the API
+  updateEmployee(emp : Emp) :Observable<Emp> {
+    console.log('updating emp with id '+emp.id);
+    return this.httpClient.put<Emp>(api_url,emp);
+  }
+  // Method to update emp to the API
+  deleteEmp(id : number) :Observable<Emp> {
+    console.log('deleting emp with id '+id);
+    let delteUrl = api_url+"/"+id;
+    return this.httpClient.delete<Emp>(delteUrl);
   }
 }

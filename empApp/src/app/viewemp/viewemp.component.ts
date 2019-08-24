@@ -15,10 +15,10 @@ export class ViewempComponent implements OnInit {
 
   // Method to remove an emp from the table
   remove(emp: Emp) {
-    // index of the emp object in array is obtained
-    let index = this.empService.empArray.indexOf(emp);
-    // using the index object is removed from the array
-    this.empService.empArray.splice(index,1);
+    this.empService.deleteEmp(emp.id)
+    .subscribe(data => {
+      this.fetchEmp();
+    });
   }
   // Method to handle the click of edit button
   enableEdit(emp: Emp) {
@@ -30,6 +30,12 @@ export class ViewempComponent implements OnInit {
     this.router.navigate(['new']);
   }
   ngOnInit() {
+   this.fetchEmp();
   }
-
+  fetchEmp() {
+    let obs = this.empService.loadEmployees();
+    obs.subscribe((data: Emp[]) => {
+      this.empService.empArray = data;
+    });
+  }
 }
