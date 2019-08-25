@@ -1,0 +1,34 @@
+<div class="row">
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" name="user.name"
+      [(ngModel)]="user.name" class="form-control" readonly>
+    </div>
+    <div class="form-group">
+      <label>UserName</label>
+      <input type="text" name="user.username"
+      [(ngModel)]="user.username" class="form-control" readonly>
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input type="text" name="user.email"
+        [(ngModel)]="user.email" class="form-control" readonly>
+      </div>
+    <div class="form-group">
+        <label>City</label>
+        <input type="text" name="user.address.city"
+        [(ngModel)]="user.address.city" class="form-control" readonly>
+    </div> 
+    <div class="form-group">
+      <label>State</label>
+      <input type="text" name="user.address.state"
+      [(ngModel)]="user.address.state" class="form-control" readonly>
+    </div> 
+    <div class="form-group">
+      <label>Company</label>
+      <input type="text" name="user.company.name"
+      [(ngModel)]="user.company.name" class="form-control" readonly>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,14 @@
+<div class="row">
+<table class="table table-bordered table-hover table-striped">
+<tr>
+  <td>Name</td><td>Email</td><td>City</td><td>Action</td>
+</tr>
+<tr *ngFor="let user of usersToBeDisplayed">
+    <td>{{user.name}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.address.city}}</td>
+    <td><button type="button" class="btn btn-primary"
+      (click)="userSelected(user)">View Details</button></td>
+  </tr>
+</table>
+</div>

@@ -1,0 +1,5 @@
+<user-table [usersToBeDisplayed]="users" 
+(selected)="showDetails($event)"></user-table>
+
+<user-details [user]="selected" *ngIf="selected != null"></user-details>
+
