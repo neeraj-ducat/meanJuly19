@@ -1,2 +1,6 @@
-<h3>It is a multi-module application.</h3>
-<p>Use the above menu to load different modules.</p>
+<form [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
+    <input formControlName="email" placeholder="Your email">
+    <input formControlName="password" placeholder="Your password">
+    <button type="submit">Login</button>
+</form>
+  
