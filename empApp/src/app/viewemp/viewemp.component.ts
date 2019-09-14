@@ -15,7 +15,7 @@ export class ViewempComponent implements OnInit {
 
   // Method to remove an emp from the table
   remove(emp: Emp) {
-    this.empService.deleteEmp(emp.id)
+    this.empService.deleteEmp(emp._id)
     .subscribe(data => {
       this.fetchEmp();
     });

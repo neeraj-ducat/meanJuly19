@@ -3,7 +3,7 @@ import { Emp } from './emp.entity';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const api_url ='http://localhost:3000/employees';
+const api_url ='http://localhost:3000/emps';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +38,7 @@ export class EmpService {
   }
   // Method to update emp to the API
   updateEmployee(emp : Emp) :Observable<Emp> {
-    console.log('updating emp with id '+emp.id);
+    console.log('updating emp with id '+emp._id);
     return this.httpClient.put<Emp>(api_url,emp);
   }
   // Method to update emp to the API
